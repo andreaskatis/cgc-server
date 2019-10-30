@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Coverage for session {{ session }}</title>
+	</head>
+		<style type="text/css" media="screen">
+	iframe {
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+		width: 100%;
+		height: 100%;
+	}
+
+	body, html {
+	padding: 0px;
+	margin: 0px;
+		height: 100%;
+	}
+	</style>
+	<script>
+		function timer() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4 && xhttp.status == 200) {
+						document.getElementById('iframe').contentWindow.location.reload();
+					};
+			}
+			xhttp.open("GET", "/session/{{ session }}/update_lcov", true);
+			xhttp.send();
+		}
+		timer();
+		setInterval(timer, 3000);
+	</script>
+	<body>
+		<iframe id="iframe" style="border: 0; width: 100%; height: 100%" src="/static/sessions/{{ session }}/html/{{ path }}"></iframe>
+	</body>
+</html>

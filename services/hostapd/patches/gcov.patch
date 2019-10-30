@@ -1,0 +1,34 @@
+--- a/hostapd/main.c	2016-10-02 13:51:11.000000000 -0500
++++ b/hostapd/main.c	2019-07-16 10:44:48.946368180 -0500
+@@ -28,7 +28,23 @@
+ #include "config_file.h"
+ #include "eap_register.h"
+ #include "ctrl_iface.h"
++#include <signal.h>
+ 
++void __gcov_flush(void);
++void gcov_handler(int signum)
++{
++	__gcov_flush();
++}
++static void attach_gcov()
++{
++	struct sigaction new_action;
++	/* setup signal hander */
++	new_action.sa_handler = gcov_handler;
++	sigemptyset(&new_action.sa_mask);
++	new_action.sa_flags = SA_RESTART;
++
++	sigaction(SIGUSR2, &new_action, NULL);
++}
+ 
+ struct hapd_global {
+ 	void **drv_priv;
+@@ -645,6 +661,7 @@
+ 	char **if_names = NULL;
+ 	size_t if_names_size = 0;
+ 
++	attach_gcov();
+ 	if (os_program_init())
+ 		return -1;
+ 

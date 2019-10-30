@@ -1,0 +1,696 @@
+{
+		"3D_Image_Toolkit": {
+			"cmd":"cb-multios/cb-multios/build/challenges/3D_Image_Toolkit/3D_Image_Toolkit"
+		},
+		"Accel": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Accel/Accel"
+		},
+		"A_Game_of_Chance": {
+			"cmd":"cb-multios/cb-multios/build/challenges/A_Game_of_Chance/A_Game_of_Chance"
+		},
+		"AIS-Lite": {
+			"cmd":"cb-multios/cb-multios/build/challenges/AIS-Lite/AIS-Lite"
+		},
+		"anagram_game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/anagram_game/anagram_game"
+		},
+		"ASCII_Content_Server": {
+			"cmd":"cb-multios/cb-multios/build/challenges/ASCII_Content_Server/ASCII_Content_Server"
+		},
+		"ASL6parse": {
+			"cmd":"cb-multios/cb-multios/build/challenges/ASL6parse/ASL6parse"
+		},
+		"Audio_Visualizer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Audio_Visualizer/Audio_Visualizer"
+		},
+		"Azurad": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Azurad/Azurad"
+		},
+		"Barcoder": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Barcoder/Barcoder"
+		},
+		"basic_emulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/basic_emulator/basic_emulator"
+		},
+		"basic_messaging": {
+			"cmd":"cb-multios/cb-multios/build/challenges/basic_messaging/basic_messaging"
+		},
+		"BIRC": {
+			"cmd":"cb-multios/cb-multios/build/challenges/BIRC/BIRC"
+		},
+		"BitBlaster": {
+			"cmd":"cb-multios/cb-multios/build/challenges/BitBlaster/BitBlaster"
+		},
+		"Bloomy_Sunday": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Bloomy_Sunday/Bloomy_Sunday"
+		},
+		"Board_Game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Board_Game/Board_Game"
+		},
+		"BudgIT": {
+			"cmd":"cb-multios/cb-multios/build/challenges/BudgIT/BudgIT"
+		},
+		"CableGrind": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CableGrind/CableGrind"
+		},
+		"CableGrindLlama": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CableGrindLlama/CableGrindLlama"
+		},
+		"Cereal_Mixup__A_Cereal_Vending_Machine_Controller": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Cereal_Mixup__A_Cereal_Vending_Machine_Controller/Cereal_Mixup__A_Cereal_Vending_Machine_Controller"
+		},
+		"CGC_Board": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Board/CGC_Board"
+		},
+		"CGC_File_System": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_File_System/CGC_File_System"
+		},
+		"CGC_Hangman_Game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Hangman_Game/CGC_Hangman_Game"
+		},
+		"CGC_Image_Parser": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Image_Parser/CGC_Image_Parser"
+		},
+		"CGC_Planet_Markup_Language_Parser": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Planet_Markup_Language_Parser/CGC_Planet_Markup_Language_Parser"
+		},
+		"CGC_Symbol_Viewer_CSV": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Symbol_Viewer_CSV/CGC_Symbol_Viewer_CSV"
+		},
+		"CGC_Video_Format_Parser_and_Viewer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CGC_Video_Format_Parser_and_Viewer/CGC_Video_Format_Parser_and_Viewer"
+		},
+		"Character_Statistics": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Character_Statistics/Character_Statistics"
+		},
+		"Checkmate": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Checkmate/Checkmate"
+		},
+		"chess_mimic": {
+			"cmd":"cb-multios/cb-multios/build/challenges/chess_mimic/chess_mimic"
+		},
+		"Childs_Game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Childs_Game/Childs_Game"
+		},
+		"CLOUDCOMPUTE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CLOUDCOMPUTE/CLOUDCOMPUTE"
+		},
+		"CNMP": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CNMP/CNMP"
+		},
+		"COLLIDEOSCOPE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/COLLIDEOSCOPE/COLLIDEOSCOPE"
+		},
+		"commerce_webscale": {
+			"cmd":"cb-multios/cb-multios/build/challenges/commerce_webscale/commerce_webscale"
+		},
+		"cotton_swab_arithmetic": {
+			"cmd":"cb-multios/cb-multios/build/challenges/cotton_swab_arithmetic/cotton_swab_arithmetic"
+		},
+		"Cromulence_All_Service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Cromulence_All_Service/Cromulence_All_Service"
+		},
+		"CTTP": {
+			"cmd":"cb-multios/cb-multios/build/challenges/CTTP/CTTP"
+		},
+		"cyber_blogger": {
+			"cmd":"cb-multios/cb-multios/build/challenges/cyber_blogger/cyber_blogger"
+		},
+		"DFARS_Sample_Service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/DFARS_Sample_Service/DFARS_Sample_Service"
+		},
+		"Diary_Parser": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Diary_Parser/Diary_Parser"
+		},
+		"Differ": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Differ/Differ"
+		},
+		"Diophantine_Password_Wallet": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Diophantine_Password_Wallet/Diophantine_Password_Wallet"
+		},
+		"Dive_Logger": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Dive_Logger/Dive_Logger"
+		},
+		"Divelogger2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Divelogger2/Divelogger2"
+		},
+		"Document_Rendering_Engine": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Document_Rendering_Engine/Document_Rendering_Engine"
+		},
+		"Dungeon_Master": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Dungeon_Master/Dungeon_Master"
+		},
+		"ECM_TCM_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/ECM_TCM_Simulator/ECM_TCM_Simulator"
+		},
+		"Eddy": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Eddy/Eddy"
+		},
+		"electronictrading": {
+			"cmd":"cb-multios/cb-multios/build/challenges/electronictrading/electronictrading"
+		},
+		"Email_System_2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Email_System_2/Email_System_2"
+		},
+		"Enslavednode_chat": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Enslavednode_chat/Enslavednode_chat"
+		},
+		"Estadio": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Estadio/Estadio"
+		},
+		"expression_database": {
+			"cmd":"cb-multios/cb-multios/build/challenges/expression_database/expression_database"
+		},
+		"FablesReport": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FablesReport/FablesReport"
+		},
+		"Facilities_Access_Control_System": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Facilities_Access_Control_System/Facilities_Access_Control_System"
+		},
+		"FailAV": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FailAV/FailAV"
+		},
+		"FASTLANE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FASTLANE/FASTLANE"
+		},
+		"FileSys": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FileSys/FileSys"
+		},
+		"Filesystem_Command_Shell": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Filesystem_Command_Shell/Filesystem_Command_Shell"
+		},
+		"Finicky_File_Folder": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Finicky_File_Folder/Finicky_File_Folder"
+		},
+		"FISHYXML": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FISHYXML/FISHYXML"
+		},
+		"Flash_File_System": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Flash_File_System/Flash_File_System"
+		},
+		"Flight_Routes": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Flight_Routes/Flight_Routes"
+		},
+		"Fortress": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Fortress/Fortress"
+		},
+		"FSK_BBS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FSK_BBS/FSK_BBS"
+		},
+		"FSK_Messaging_Service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FSK_Messaging_Service/FSK_Messaging_Service"
+		},
+		"FUN": {
+			"cmd":"cb-multios/cb-multios/build/challenges/FUN/FUN"
+		},
+		"Game_Night": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Game_Night/Game_Night"
+		},
+		"Glue": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Glue/Glue"
+		},
+		"GPS_Tracker": {
+			"cmd":"cb-multios/cb-multios/build/challenges/GPS_Tracker/GPS_Tracker"
+		},
+		"GreatView": {
+			"cmd":"cb-multios/cb-multios/build/challenges/GreatView/GreatView"
+		},
+		"greeter": {
+			"cmd":"cb-multios/cb-multios/build/challenges/greeter/greeter"
+		},
+		"GREYMATTER": {
+			"cmd":"cb-multios/cb-multios/build/challenges/GREYMATTER/GREYMATTER"
+		},
+		"Gridder": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Gridder/Gridder"
+		},
+		"Griswold": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Griswold/Griswold"
+		},
+		"Grit": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Grit/Grit"
+		},
+		"H20FlowInc": {
+			"cmd":"cb-multios/cb-multios/build/challenges/H20FlowInc/H20FlowInc"
+		},
+		"HackMan": {
+			"cmd":"cb-multios/cb-multios/build/challenges/HackMan/HackMan"
+		},
+		"hawaii_sets": {
+			"cmd":"cb-multios/cb-multios/build/challenges/hawaii_sets/hawaii_sets"
+		},
+		"Headscratch": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Headscratch/Headscratch"
+		},
+		"HeartThrob": {
+			"cmd":"cb-multios/cb-multios/build/challenges/HeartThrob/HeartThrob"
+		},
+		"HIGHCOO": {
+			"cmd":"cb-multios/cb-multios/build/challenges/HIGHCOO/HIGHCOO"
+		},
+		"HighFrequencyTradingAlgo": {
+			"cmd":"cb-multios/cb-multios/build/challenges/HighFrequencyTradingAlgo/HighFrequencyTradingAlgo"
+		},
+		"Hug_Game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Hug_Game/Hug_Game"
+		},
+		"humaninterface": {
+			"cmd":"cb-multios/cb-multios/build/challenges/humaninterface/humaninterface"
+		},
+		"Image_Compressor": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Image_Compressor/Image_Compressor"
+		},
+		"INSULATR": {
+			"cmd":"cb-multios/cb-multios/build/challenges/INSULATR/INSULATR"
+		},
+		"Kaprica_Go": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Kaprica_Go/Kaprica_Go"
+		},
+		"Kaprica_Script_Interpreter": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Kaprica_Script_Interpreter/Kaprica_Script_Interpreter"
+		},
+		"KKVS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/KKVS/KKVS"
+		},
+		"KTY_Pretty_Printer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/KTY_Pretty_Printer/KTY_Pretty_Printer"
+		},
+		"LAN_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/LAN_Simulator/LAN_Simulator"
+		},
+		"Lazybox": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Lazybox/Lazybox"
+		},
+		"LazyCalc": {
+			"cmd":"cb-multios/cb-multios/build/challenges/LazyCalc/LazyCalc"
+		},
+		"LMS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/LMS/LMS"
+		},
+		"Loud_Square_Instant_Messaging_Protocol_LSIMP": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Loud_Square_Instant_Messaging_Protocol_LSIMP/Loud_Square_Instant_Messaging_Protocol_LSIMP"
+		},
+		"LulzChat": {
+			"cmd":"cb-multios/cb-multios/build/challenges/LulzChat/LulzChat"
+		},
+		"Matchmaker": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Matchmaker/Matchmaker"
+		},
+		"Material_Temperature_Simulation": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Material_Temperature_Simulation/Material_Temperature_Simulation"
+		},
+		"Mathematical_Solver": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Mathematical_Solver/Mathematical_Solver"
+		},
+		"matrices_for_sale": {
+			"cmd":"cb-multios/cb-multios/build/challenges/matrices_for_sale/matrices_for_sale"
+		},
+		"Matrix_Math_Calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Matrix_Math_Calculator/Matrix_Math_Calculator"
+		},
+		"Message_Service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Message_Service/Message_Service"
+		},
+		"Messaging": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Messaging/Messaging"
+		},
+		"middleout": {
+			"cmd":"cb-multios/cb-multios/build/challenges/middleout/middleout"
+		},
+		"middleware_handshake": {
+			"cmd":"cb-multios/cb-multios/build/challenges/middleware_handshake/middleware_handshake"
+		},
+		"Minimalistic_Memo_Manager_3M": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Minimalistic_Memo_Manager_3M/Minimalistic_Memo_Manager_3M"
+		},
+		"Modern_Family_Tree": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Modern_Family_Tree/Modern_Family_Tree"
+		},
+		"Monster_Game": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Monster_Game/Monster_Game"
+		},
+		"Mount_Filemore": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Mount_Filemore/Mount_Filemore"
+		},
+		"Movie_Rental_Service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Movie_Rental_Service/Movie_Rental_Service"
+		},
+		"Movie_Rental_Service_Redux": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Movie_Rental_Service_Redux/Movie_Rental_Service_Redux"
+		},
+		"Multi_Arena_Pursuit_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multi_Arena_Pursuit_Simulator/Multi_Arena_Pursuit_Simulator"
+		},
+		"Multicast_Chat_Server": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multicast_Chat_Server/Multicast_Chat_Server"
+		},
+		"Multipass": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multipass/Multipass"
+		},
+		"Multipass2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multipass2/Multipass2"
+		},
+		"Multipass3": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multipass3/Multipass3"
+		},
+		"Multi_User_Calendar": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Multi_User_Calendar/Multi_User_Calendar"
+		},
+		"Music_Store_Client": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Music_Store_Client/Music_Store_Client"
+		},
+		"NarfAgainShell": {
+			"cmd":"cb-multios/cb-multios/build/challenges/NarfAgainShell/NarfAgainShell"
+		},
+		"NarfRPN": {
+			"cmd":"cb-multios/cb-multios/build/challenges/NarfRPN/NarfRPN"
+		},
+		"netstorage": {
+			"cmd":"cb-multios/cb-multios/build/challenges/netstorage/netstorage"
+		},
+		"Network_File_System": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Network_File_System/Network_File_System"
+		},
+		"Network_File_System_v3": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Network_File_System_v3/Network_File_System_v3"
+		},
+		"Network_Queuing_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Network_Queuing_Simulator/Network_Queuing_Simulator"
+		},
+		"Neural_House": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Neural_House/Neural_House"
+		},
+		"NoHiC": {
+			"cmd":"cb-multios/cb-multios/build/challenges/NoHiC/NoHiC"
+		},
+		"No_Paper._Not_Ever._NOPE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/No_Paper._Not_Ever._NOPE/No_Paper._Not_Ever._NOPE"
+		},
+		"One_Amp": {
+			"cmd":"cb-multios/cb-multios/build/challenges/One_Amp/One_Amp"
+		},
+		"One_Vote": {
+			"cmd":"cb-multios/cb-multios/build/challenges/One_Vote/One_Vote"
+		},
+		"online_job_application": {
+			"cmd":"cb-multios/cb-multios/build/challenges/online_job_application/online_job_application"
+		},
+		"online_job_application2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/online_job_application2/online_job_application2"
+		},
+		"On_Sale": {
+			"cmd":"cb-multios/cb-multios/build/challenges/On_Sale/On_Sale"
+		},
+		"Order_Up": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Order_Up/Order_Up"
+		},
+		"OTPSim": {
+			"cmd":"cb-multios/cb-multios/build/challenges/OTPSim/OTPSim"
+		},
+		"OUTLAW": {
+			"cmd":"cb-multios/cb-multios/build/challenges/OUTLAW/OUTLAW"
+		},
+		"OUTLAW_3": {
+			"cmd":"cb-multios/cb-multios/build/challenges/OUTLAW_3/OUTLAW_3"
+		},
+		"Overflow_Parking": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Overflow_Parking/Overflow_Parking"
+		},
+		"Pac_for_Edges": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Pac_for_Edges/Pac_for_Edges"
+		},
+		"Packet_Analyzer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Packet_Analyzer/Packet_Analyzer"
+		},
+		"Packet_Receiver": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Packet_Receiver/Packet_Receiver"
+		},
+		"Palindrome": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Palindrome/Palindrome"
+		},
+		"Palindrome2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Palindrome2/Palindrome2"
+		},
+		"Parking_Permit_Management_System_PPMS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Parking_Permit_Management_System_PPMS/Parking_Permit_Management_System_PPMS"
+		},
+		"Particle_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Particle_Simulator/Particle_Simulator"
+		},
+		"Pattern_Finder": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Pattern_Finder/Pattern_Finder"
+		},
+		"payroll": {
+			"cmd":"cb-multios/cb-multios/build/challenges/payroll/payroll"
+		},
+		"PCM_Message_decoder": {
+			"cmd":"cb-multios/cb-multios/build/challenges/PCM_Message_decoder/PCM_Message_decoder"
+		},
+		"Personal_Fitness_Manager": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Personal_Fitness_Manager/Personal_Fitness_Manager"
+		},
+		"Pipelined": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Pipelined/Pipelined"
+		},
+		"pizza_ordering_system": {
+			"cmd":"cb-multios/cb-multios/build/challenges/pizza_ordering_system/pizza_ordering_system"
+		},
+		"PKK_Steganography": {
+			"cmd":"cb-multios/cb-multios/build/challenges/PKK_Steganography/PKK_Steganography"
+		},
+		"Printer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Printer/Printer"
+		},
+		"PRU": {
+			"cmd":"cb-multios/cb-multios/build/challenges/PRU/PRU"
+		},
+		"PTaaS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/PTaaS/PTaaS"
+		},
+		"QuadtreeConways": {
+			"cmd":"cb-multios/cb-multios/build/challenges/QuadtreeConways/QuadtreeConways"
+		},
+		"QUIETSQUARE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/QUIETSQUARE/QUIETSQUARE"
+		},
+		"RAM_based_filesystem": {
+			"cmd":"cb-multios/cb-multios/build/challenges/RAM_based_filesystem/RAM_based_filesystem"
+		},
+		"reallystream": {
+			"cmd":"cb-multios/cb-multios/build/challenges/reallystream/reallystream"
+		},
+		"Recipe_and_Pantry_Manager": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Recipe_and_Pantry_Manager/Recipe_and_Pantry_Manager"
+		},
+		"Recipe_Database": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Recipe_Database/Recipe_Database"
+		},
+		"REDPILL": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REDPILL/REDPILL"
+		},
+		"Rejistar": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Rejistar/Rejistar"
+		},
+		"REMATCH_1--Hat_Trick--Morris_Worm": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_1--Hat_Trick--Morris_Worm/REMATCH_1--Hat_Trick--Morris_Worm"
+		},
+		"REMATCH_2--Mail_Server--Crackaddr": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_2--Mail_Server--Crackaddr/REMATCH_2--Mail_Server--Crackaddr"
+		},
+		"REMATCH_3--Address_Resolution_Service--SQL_Slammer": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_3--Address_Resolution_Service--SQL_Slammer/REMATCH_3--Address_Resolution_Service--SQL_Slammer"
+		},
+		"REMATCH_4--CGCRPC_Server--MS08-067": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_4--CGCRPC_Server--MS08-067/REMATCH_4--CGCRPC_Server--MS08-067"
+		},
+		"REMATCH_5--File_Explorer--LNK_Bug": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_5--File_Explorer--LNK_Bug/REMATCH_5--File_Explorer--LNK_Bug"
+		},
+		"REMATCH_6--Secure_Server--Heartbleed": {
+			"cmd":"cb-multios/cb-multios/build/challenges/REMATCH_6--Secure_Server--Heartbleed/REMATCH_6--Secure_Server--Heartbleed"
+		},
+		"Resort_Modeller": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Resort_Modeller/Resort_Modeller"
+		},
+		"root64_and_parcour": {
+			"cmd":"cb-multios/cb-multios/build/challenges/root64_and_parcour/root64_and_parcour"
+		},
+		"router_simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/router_simulator/router_simulator"
+		},
+		"RRPN": {
+			"cmd":"cb-multios/cb-multios/build/challenges/RRPN/RRPN"
+		},
+		"Sad_Face_Template_Engine_SFTE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Sad_Face_Template_Engine_SFTE/Sad_Face_Template_Engine_SFTE"
+		},
+		"Sample_Shipgame": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Sample_Shipgame/Sample_Shipgame"
+		},
+		"SAuth": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SAuth/SAuth"
+		},
+		"Scrum_Database": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Scrum_Database/Scrum_Database"
+		},
+		"SCUBA_Dive_Logging": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SCUBA_Dive_Logging/SCUBA_Dive_Logging"
+		},
+		"Secure_Compression": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Secure_Compression/Secure_Compression"
+		},
+		"Sensr": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Sensr/Sensr"
+		},
+		"SFTSCBSISS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SFTSCBSISS/SFTSCBSISS"
+		},
+		"Shipgame": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Shipgame/Shipgame"
+		},
+		"Shortest_Path_Tree_Calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Shortest_Path_Tree_Calculator/Shortest_Path_Tree_Calculator"
+		},
+		"ShoutCTF": {
+			"cmd":"cb-multios/cb-multios/build/challenges/ShoutCTF/ShoutCTF"
+		},
+		"SIGSEGV": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SIGSEGV/SIGSEGV"
+		},
+		"simple_integer_calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/simple_integer_calculator/simple_integer_calculator"
+		},
+		"simplenote": {
+			"cmd":"cb-multios/cb-multios/build/challenges/simplenote/simplenote"
+		},
+		"simpleOCR": {
+			"cmd":"cb-multios/cb-multios/build/challenges/simpleOCR/simpleOCR"
+		},
+		"Simple_Stack_Machine": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Simple_Stack_Machine/Simple_Stack_Machine"
+		},
+		"Single-Sign-On": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Single-Sign-On/Single-Sign-On"
+		},
+		"SLUR_reference_implementation": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SLUR_reference_implementation/SLUR_reference_implementation"
+		},
+		"Snail_Mail": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Snail_Mail/Snail_Mail"
+		},
+		"SOLFEDGE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SOLFEDGE/SOLFEDGE"
+		},
+		"Sorter": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Sorter/Sorter"
+		},
+		"Space_Attackers": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Space_Attackers/Space_Attackers"
+		},
+		"SPIFFS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/SPIFFS/SPIFFS"
+		},
+		"Square_Rabbit": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Square_Rabbit/Square_Rabbit"
+		},
+		"stack_vm": {
+			"cmd":"cb-multios/cb-multios/build/challenges/stack_vm/stack_vm"
+		},
+		"Stock_Exchange_Simulator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Stock_Exchange_Simulator/Stock_Exchange_Simulator"
+		},
+		"stream_vm": {
+			"cmd":"cb-multios/cb-multios/build/challenges/stream_vm/stream_vm"
+		},
+		"stream_vm2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/stream_vm2/stream_vm2"
+		},
+		"Street_map_service": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Street_map_service/Street_map_service"
+		},
+		"String_Info_Calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/String_Info_Calculator/String_Info_Calculator"
+		},
+		"String_Storage_and_Retrieval": {
+			"cmd":"cb-multios/cb-multios/build/challenges/String_Storage_and_Retrieval/String_Storage_and_Retrieval"
+		},
+		"TAINTEDLOVE": {
+			"cmd":"cb-multios/cb-multios/build/challenges/TAINTEDLOVE/TAINTEDLOVE"
+		},
+		"Tennis_Ball_Motion_Calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Tennis_Ball_Motion_Calculator/Tennis_Ball_Motion_Calculator"
+		},
+		"Terrible_Ticket_Tracker": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Terrible_Ticket_Tracker/Terrible_Ticket_Tracker"
+		},
+		"TextSearch": {
+			"cmd":"cb-multios/cb-multios/build/challenges/TextSearch/TextSearch"
+		},
+		"TFTTP": {
+			"cmd":"cb-multios/cb-multios/build/challenges/TFTTP/TFTTP"
+		},
+		"The_Longest_Road": {
+			"cmd":"cb-multios/cb-multios/build/challenges/The_Longest_Road/The_Longest_Road"
+		},
+		"Thermal_Controller_v2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Thermal_Controller_v2/Thermal_Controller_v2"
+		},
+		"Thermal_Controller_v3": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Thermal_Controller_v3/Thermal_Controller_v3"
+		},
+		"TIACA": {
+			"cmd":"cb-multios/cb-multios/build/challenges/TIACA/TIACA"
+		},
+		"Tick-A-Tack": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Tick-A-Tack/Tick-A-Tack"
+		},
+		"tribute": {
+			"cmd":"cb-multios/cb-multios/build/challenges/tribute/tribute"
+		},
+		"TVS": {
+			"cmd":"cb-multios/cb-multios/build/challenges/TVS/TVS"
+		},
+		"User_Manager": {
+			"cmd":"cb-multios/cb-multios/build/challenges/User_Manager/User_Manager"
+		},
+		"UTF-late": {
+			"cmd":"cb-multios/cb-multios/build/challenges/UTF-late/UTF-late"
+		},
+		"ValveChecks": {
+			"cmd":"cb-multios/cb-multios/build/challenges/ValveChecks/ValveChecks"
+		},
+		"Vector_Graphics_2": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Vector_Graphics_2/Vector_Graphics_2"
+		},
+		"Vector_Graphics_Format": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Vector_Graphics_Format/Vector_Graphics_Format"
+		},
+		"Venture_Calculator": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Venture_Calculator/Venture_Calculator"
+		},
+		"vFilter": {
+			"cmd":"cb-multios/cb-multios/build/challenges/vFilter/vFilter"
+		},
+		"Virtual_Machine": {
+			"cmd":"cb-multios/cb-multios/build/challenges/Virtual_Machine/Virtual_Machine"
+		},
+		"virtual_pet": {
+			"cmd":"cb-multios/cb-multios/build/challenges/virtual_pet/virtual_pet"
+		},
+		"WhackJack": {
+			"cmd":"cb-multios/cb-multios/build/challenges/WhackJack/WhackJack"
+		},
+		"WordCompletion": {
+			"cmd":"cb-multios/cb-multios/build/challenges/WordCompletion/WordCompletion"
+		},
+		"XStore": {
+			"cmd":"cb-multios/cb-multios/build/challenges/XStore/XStore"
+		},
+		"yolodex": {
+			"cmd":"cb-multios/cb-multios/build/challenges/yolodex/yolodex"
+		},
+		"wifi_relay": {
+			"class" : "UMLService",
+			"cmd":"umlinux/linux rootfstype=hostfs ro mem=256m eth0=tuntap,eth1 quiet init=/root/cgc/services/wifi_relay/init"
+		}
+}

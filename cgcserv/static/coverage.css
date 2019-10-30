@@ -1,0 +1,62 @@
+.list-group {
+  padding: 0;
+  overflow: hidden;
+  padding-left:10px;
+}
+
+.list-group-item .glyphicon {
+  margin-right: 5px;
+}
+
+.coverage-source-view {
+	overflow-y:scroll;
+	width:100%;
+	height:100%;
+	white-space: pre;
+	font-family: monospace;
+	font-size: 13px;
+}
+.coverage-source-view table {
+	table-layout:fixed;
+}
+
+.coverage-source-view .col-lnum {
+	background-color: #EFE383;
+	width: 40px;
+}
+
+.coverage-source-view .linenum {
+	background-color: #EFE383;
+}
+.coverage-source-view .col-count {
+	width: 40px;
+}
+.coverage-tree-view {
+	overflow-y : scroll;
+	height: 100%;
+}
+
+.coverage-source-line:not([data-count='0']) {
+	background-color: lightBlue;	
+}
+
+.coverage-source-line:not([data-count]) {
+	background-color: white;	
+}
+
+.coverage-source-line[data-count='0'] {
+	background-color: red;	
+}
+
+.coverage-progress-bar {
+	height: 100%;
+	color: #000;
+}
+
+.coverage-progress {
+	display: inline-block;
+	width: 50px;
+	height: 15px;
+	margin-left:10px;
+}
+

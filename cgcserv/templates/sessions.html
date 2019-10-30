@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>CGC Server</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/static/three.min.js"></script>
+	<script src="/static/cube.js"></script>
+	<script src="/static/srccoverage.js"></script>
+	<link rel="stylesheet" href="/static/autocombobox.css">
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/coverage.css">
+	<script>
+		currentView = null;
+		selectedSession = "";
+		sessions = {};
+		cursid = "";
+		var pollTimer;
+		var sourceView;
+		var treeView;
+
+		function serviceStartResponse(data) {
+			var a = $('#alrtStart')
+			if (!data.error) {
+				a.hide();
+			} else {
+				a.html(data.error).show();
+			}
+			console.log(data)
+			updateSessionList()
+		}
+
+		function serviceStopResponse(data) {
+			console.log(data)
+			updateSessionList()
+		}
+
+		function coverageResponse(data) {
+			sourceView.update(data);
+			treeView.update(data);
+		}
+
+		function eventsResponse(signals)
+		{
+			jEvents = $(".service-events")
+			jEvents.find('*').each(function(i, e) {
+				var key
+				key = $(this).data("key")
+				if (key in signals) {
+					$(this).text(signals[key]);
+				} else if(key != null) {
+					$(this).parent().remove();
+				}
+				delete signals[key]
+			});
+			jEvents.append(function() {
+				var s = "";
+				for (var key in signals) {
+					s += "<li class='list-group-item d-flex justify-content-between align-items-center'>" + key +
+						":<span class='badge badge-primary badge-pill' data-key='" + key + "'>" + signals[key] + "</span></li>";
+				}
+				return s;
+			});
+		}
+
+		function detailsResponse(data)
+		{
+			$(".service-details").find("*").each(function(i, e) {
+				key = $(this).data("key");
+				if (key in data) {
+					$(this).text( data[key])
+				}
+			});
+			updateView("#dashboard")
+		}
+
+		function queryResponse(d) {
+			Object.keys(sessions).forEach(function(e) {
+				if (!d[e]) {
+					$('#' + e).remove()
+				}
+			})
+			Object.keys(d).forEach(function(e) {
+				if (!sessions[e]) {
+					$('#sessionList').append(
+						"<tr id='" + e + "'>" +
+						"<td>" + e + "</td>" +
+						"<td>"+ d[e].name + "</td>" +
+						"<td>"+ d[e].port + "</td>" +
+						"<td><a href='#' onclick=\"updateDetails('" + e +"')\">Details</button></td>" +
+						"<td><button type='button' class='btn btn-danger' onclick=\"stopSession('" + e + "')\">Stop</button></td>" +
+						"<div id='details' class='collapse'>" +
+						"report" +
+						"</div>" +
+						"</tr>"
+					)
+					sessions[e] = d[e];
+				}
+			})
+		}
+
+		function stopSession(sid) {
+			$.getJSON("/session/" + sid + "/stop", serviceStopResponse)
+				.fail(function(jqxhr, textStatus, error) {
+					console.log("Request Failed: " + textStatus + ", " + error);
+				})
+				.always(function(jqxhr, textStatus, error) {
+					console.log("Request Failed: " + textStatus + ", " + error);
+				})
+		}
+
+		function updateSessionList() {
+				$.getJSON("/session/query", queryResponse)
+					.fail(function(jqxhr, textStatus, error) {
+						console.log("Request Failed: " + textStatus + ", " + error);
+					})
+		}
+
+		function updateEvents(sid) {
+			$.getJSON("/session/" + sid + "/events", eventsResponse)
+				.fail(function(jqxhr, textStatus, error) {
+					console.log("Request Failed: " + textStatus + ", " + error);
+				})
+		}
+
+		function updateCoverage(sid) {
+			$.getJSON("/session/" + sid + "/coverage", coverageResponse)
+				.fail(function(jqxhr, textStatus, error) {
+					console.log("Request Failed: " + textStatus + ", " + error);
+				})
+		}
+
+		function pollDetails(sid) {
+			updateEvents(sid);
+			updateCoverage(sid);
+		}
+
+		function updateDetails(sid) {
+			$.getJSON("/session/" + sid + "/details", detailsResponse)
+				.fail(function(jqxhr, textStatus, error) {
+					console.log("Request Failed: " + textStatus + ", " + error);
+				})
+			$(".service-cores").empty()
+				.append("<li class='list-group-item d-flex justify-content-between align-items-center'><a target='_blank' href='/session/" + sid + "/cores'>CORES</a></li>");
+
+			treeView = new coverageTreeView($("#file-tree").empty()[0],  "/session/" + sid + "/sources");
+			
+			
+			var d = document.createDocumentFragment();
+			sourceView = new coverageSourceView(d, "/session/" + sid + "/sources");
+			treeView.addEventListener('leafClicked', function(e) {
+				sourceView.setSourceFile(e.detail.path());
+			});
+			$("#center").empty().append(d);
+
+			if (pollTimer)
+				clearInterval(pollTimer)
+			cursid = sid;
+			updateEvents(sid);
+			updateCoverage(sid);
+			pollTimer = setInterval(pollDetails, 2000, sid);
+		}
+
+		function updateView(v) {
+			var newView = $(v)
+			if (newView.length > 0 ) {
+				if (currentView != null)
+					currentView.addClass("d-none");
+				newView.removeClass("d-none");
+				currentView = newView
+			}
+		}
+
+		$(document).ready(function() {
+			$("#btnStart").click(function() {
+				$("#btnStart")
+					.prop('disabled', true)
+					.empty()
+					.append("Building...")
+					.append("<span class=\"spinner-border spinner-border-sm\"></span>")
+				service = $("#txtService").val().replace(/ /g,'+')
+				$.getJSON("/session/start?service=" + service, serviceStartResponse)
+					.fail(function(jqxhr, textStatus, error) {
+						console.log("Request Failed: " + textStatus + ", " + error);
+					})
+					.always(function(jqxhr, textStatus, error) {
+						$("#btnStart")
+							.prop('disabled', false)
+							.empty()
+							.append("Start")
+					})
+			});
+
+			updateSessionList();
+			setInterval(updateSessionList, 2000);
+			showCube("#cube");
+			updateView("#cube");
+			$( "#txtService" ).autocomplete({
+				source: [{% for service in service_list %}"{{ service }}",{% endfor %}]
+			});
+		});
+
+	</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark">
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" href="#">Sessions</a>
+		</li>
+	</ul>
+</nav>
+<div class="container-fluid" style="margin:0px;padding:0px;position:absolute;top:56px;bottom:0px">
+	<div class="row h-100">
+		<div id="toolbox" class="card col-sm-3 h-100">
+				<div class="card-header"><a data-toggle="collapse" href="#active_sessions">Active Sessions</a></div>
+				<div id="active_sessions" data-parent="#toolbox" class="card-body collapse in">
+						<!-- Button to Open the Modal -->
+				<table id="sessionList" class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th>Session ID</th><th>Service</th><th>Port</th><th>Details</th><th>Stop</th>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td>
+							<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mNewSession">New</button></td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_details">Service Details</a></div>
+				<div id="service_details" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-details">
+						<li class='list-group-item d-flex justify-content-between align-items-center'>Name:<span data-key="name"></span></li>
+						<li class='list-group-item d-flex justify-content-between align-items-center'>Port:<span data-key="port"></span></li>
+					</ul>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_events">Service Events</a></div>
+				<div id="service_events" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-events"></ul>
+					<dl class="small">
+						<dt>Notes:</dt>
+						<dd>EXIT: means the process exited via exit()</dd>
+						<dd>SIGPIPE: Probably means the fuzzer closed its socket. This results in the server closing its socket.</dd>
+						<dd>SIGUSR1: Currently SIGUSR1 is sent to the process to capture GCOV data.</dd>
+					</dl>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_dumps">Core Dumps</a></div>
+				<div id="service_dumps" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-cores"></ul>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#file-tree">File Tree</a></div>
+				<div id="file-tree" data-parent="#toolbox" class="card-body collapse"></div>
+		</div>
+		<div id="center" class="col-sm-9 h-100">
+			<div id="cube" class="d-none"></div>
+		</div>
+	</div>
+
+	<!-- The Modal -->
+	<div class="modal fade" id="mNewSession">
+		<div class="modal-dialog">
+				<div class="modal-content">
+				
+				<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Create Service</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="form-group ui-front">
+					<label for="txtService">Service:</label>
+					<input type="text" class="form-control" id="txtService">
+				</div>
+				<div id="alrtStart" class="alert alert-danger"></div>
+			</div>
+			
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btnStart">Start</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

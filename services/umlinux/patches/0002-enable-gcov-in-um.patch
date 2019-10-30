@@ -1,0 +1,11 @@
+--- a/kernel/gcov/Kconfig	2019-05-22 00:37:46.000000000 -0500
++++ b/kernel/gcov/Kconfig	2019-05-23 14:22:06.756010437 -0500
+@@ -3,7 +3,7 @@
+ config GCOV_KERNEL
+ 	bool "Enable gcov-based kernel profiling"
+ 	depends on DEBUG_FS
+-	select CONSTRUCTORS if !UML
++	select CONSTRUCTORS
+ 	default n
+ 	---help---
+ 	This option enables gcov-based code profiling (e.g. for code coverage

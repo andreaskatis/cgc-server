@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>CGC Server</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/static/three.min.js"></script>
+	<script src="/static/cube.js"></script>
+	<script src="/static/srccoverage.js"></script>
+	<link rel="stylesheet" href="/static/autocombobox.css">
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/coverage.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf-8">
+		var socket = io('http://' + document.domain + ':' + location.port);
+		var treeView;
+		var sourceView;
+		var currentSession;
+		
+		socket.on('connect', function() {
+			socket.emit('sessions', {"get": "all"} );
+		});
+		socket.on('disconnect', function() {
+			console.log("Disconnected");
+		});
+		socket.on('error', function(error) {
+			console.log(error);
+		});
+		socket.on('message', function(message) {
+			console.log(message);
+		});
+
+		socket.on('events', function(data) {
+			jEvents = $(".service-events")
+			jEvents.find('*').each(function(i, e) {
+				var key
+				key = $(this).data("key")
+				if (key in data.events) {
+					$(this).text(data.events[key]);
+				} else if(key != null) {
+					$(this).parent().remove();
+				}
+				delete data.events[key]
+			});
+			jEvents.append(function() {
+				var s = "";
+				for (var key in data.events) {
+					s += `<li class='list-group-item d-flex justify-content-between align-items-center'>
+							${key}:<span class='badge badge-primary badge-pill' data-key='${key}'>${data.events[key]}</span>
+						</li>`;
+				}
+				return s;
+			});
+
+			cores = $(".service-cores")
+			cores.find('*').each(function(i, e) {
+				var key
+				key = $(this).data("key")
+				if (key in data.cores) {
+					$(this).text(data.cores[key]);
+				} else if(key != null) {
+					$(this).parent().remove();
+				}
+				delete data.cores[key]
+			});
+			cores.append(function() {
+				var s = "";
+				for (var key in data.cores) {
+					s += `<a target="_blank" href='/session/${currentSession}/gdb/${data.cores[key]}' data-key=\"${key}\">${data.cores[key]}</a>`
+				}
+				return s;
+			});
+		});
+		
+		socket.on('coverage', function(coverage) {
+			treeView.update(coverage);
+			sourceView.update(coverage);
+		});
+
+		function renderSession(session) {
+			var active = '';
+			if(session == currentSession) {
+				active="active";
+			}
+			return `<a class="list-group-item list-group-item-action ${active}" href='#' onclick=\"joinSession('${session.id}')\"><pre><strong>${session.name}</strong> - <i>SID:${session.id} PORT:${session.port}</i></pre></a>`
+		}
+
+		socket.on('sessions', function(sessions) {
+			$('#sessionList').empty();
+			for(var s in sessions) {
+				$('#sessionList').append(renderSession(sessions[s]));
+			}
+		});
+
+		socket.on('start', function(session) {
+			$("#btnStart").empty().append("Start").prop('disabled', false);
+		});
+
+		function joinSession(sid) {
+			if (currentSession == sid)
+				return
+			if (currentSession)
+				socket.emit('leave', {"sid": currentSession} );
+			currentSession = sid;
+			$(".service-cores").empty();
+			$(".service-events").empty();
+			sourceView.setPrefix("/session/" + sid + "/sources");
+			socket.emit('join', {"sid": sid} );
+		}
+
+		$(document).ready(function() {
+			$("#btnStart").click(function() {
+				$("#btnStart")
+					.prop('disabled', true)
+					.empty()
+					.append("Building...")
+					.append("<span class=\"spinner-border spinner-border-sm\"></span>");
+				service = $("#txtService").val().replace(/ /g,'+');
+				socket.emit("start", {"service" : service});
+			});
+			treeView = new coverageTreeView($("#file-tree"));
+			sourceView = new coverageSourceView($("#center"));
+			treeView.addEventListener('leafClicked', function(e) {
+				sourceView.setSourceFile(e.detail.path());
+			});
+		});
+		
+		/*
+		sourceView = new coverageSourceView("#source-pane");
+		treeView = new coverageTreeView("#file-tree");
+		treeView.addEventListener('leafClicked', function(e) {
+				sourceView.setSourceFile(e.detail.path());
+		});
+		*/
+	</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark">
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" href="#" data-toggle="modal" data-target="#mNewSession">Sessions</a>
+		</li>
+	</ul>
+</nav>
+<div class="container-fluid" style="margin:0px;padding:0px;position:absolute;top:56px;bottom:0px">
+	<div class="row h-100">
+		<div id="toolbox" class="card col-sm-3 h-100">
+				<div class="card-header"><a data-toggle="collapse" href="#service_events">Service Events</a></div>
+				<div id="service_events" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-events"></ul>
+					<dl class="small">
+						<dt>Notes:</dt>
+						<dd>EXIT: means the process exited via exit()</dd>
+						<dd>SIGPIPE: Probably means the fuzzer closed its socket. This results in the server closing its socket.</dd>
+						<dd>SIGUSR1: Currently SIGUSR1 is sent to the process to capture GCOV data.</dd>
+					</dl>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_cores">Core Dumps</a></div>
+				<div id="service_cores" data-parent="#toolbox" class="card-body collapse" style="overflow-y:scroll">
+					<ul class="list-group service-cores"></ul>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#file-tree">File Tree</a></div>
+				<div id="file-tree" data-parent="#toolbox" class="card-body"></div>
+		</div>
+		<div id="center" class="col-sm-9 h-100">
+			<div id="cube" class="d-none"></div>
+		</div>
+	</div>
+
+	<!-- The Modal -->
+	<div class="modal fade" id="mNewSession">
+		<div class="modal-dialog">
+				<div class="modal-content">
+				
+				<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Sessions</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">New Service:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Service" id="txtService">
+					<div class="input-group-append">
+						<button type="button" class="btn btn-primary" id="btnStart">Start</button>
+					</div>
+				</div>
+
+				<div id="sessionList" class="list-group">
+
+				</div>
+			</div>
+			
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

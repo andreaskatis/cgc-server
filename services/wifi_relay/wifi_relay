@@ -1,0 +1,16 @@
+#!/bin/sh
+
+SERVICES_DIR="$(readlink -f $(dirname $0)/..)"
+
+
+#Need a place for exec shm, /dev/shm is noexec by default in docker
+mkdir -p /dev/uml
+
+#exec so the parent process attaches to linux
+exec $SERVICES_DIR/umlinux/linux \
+	rootfstype=hostfs ro \
+	mem=256m eth0=tuntap,eth1 \
+	GCOV_PREFIX="$GCOV_PREFIX" \
+	GCOV_PREFIX_STRIP="$GCOV_PREFIX_STRIP" \
+	init="$SERVICES_DIR/wifi_relay/init"
+

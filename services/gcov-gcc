@@ -1,0 +1,7 @@
+#!/bin/bash
+#-no-pie to make it easier to trace
+#-profile-arcs insert coverage code
+#-u __gcov_flush  force __gcof_flush to be linked in
+
+gcc -u __gcov_flush -fprofile-arcs -no-pie -ftest-coverage $@
+

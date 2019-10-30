@@ -1,0 +1,11 @@
+--- a/arch/um/os-Linux/mem.c	2019-04-02 23:23:29.000000000 -0500
++++ b/arch/um/os-Linux/mem.c	2019-04-17 01:33:00.109236508 -0500
+@@ -54,7 +54,7 @@
+ 	};
+ 	static const char fallback_dir[] = "/tmp";
+ 	static const char * const tmpfs_dirs[] = {
+-		"/dev/shm",
++		"/dev/uml",
+ 		fallback_dir,
+ 		NULL
+ 	};

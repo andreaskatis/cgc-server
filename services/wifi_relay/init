@@ -1,0 +1,58 @@
+#!/bin/bash
+SERVICE_DIR=$(readlink -f "$(dirname $0)/.." )
+
+PROC_DIR="$GCOV_PREFIX/../proc"
+mkdir -p "$PROC_DIR"
+
+hostapd="$SERVICE_DIR/hostapd/hostapd"
+
+gcov_dump() {
+	#Find BSS section of hostapd
+	local ddparams=$(eval $(objdump -h "${hostapd}" | sed -ne 's|.*.bss *\([a-f0-9]\+\)  \([a-f0-9]\+\).*|echo bs=$((0x\1)) skip=$((0x\2)) seek=$((0x\2))|p'))
+	local pid=$(pgrep hostapd)
+	local service_dir="/sys/kernel/debug/gcov/${SERVICE_DIR}"
+	find /sys/kernel/debug/gcov -name "mac80211_hwsim.gcda"
+	#Find the hwsim driver in the kernel coverage
+	local gcda=$(find $service_dir -name "mac80211_hwsim.gcda" -printf '%P\n')
+	mkdir -p "${GCOV_PREFIX}/$(dirname $gcda)"
+	mkdir -p "${PROC_DIR}/${pid}"
+	ln -sf "${hostapd}" "${PROC_DIR}/${pid}/exe"
+	cat "$service_dir/$gcda" > "${GCOV_PREFIX}/${gcda}"
+	kill -USR2 $pid
+	sleep 5 # Give time to flush coverage
+	files=( $(find ${GCOV_PREFIX}  -name "*.gcda" -printf "%P ") )
+	for f in ${files[@]} ; do
+		note="${f::-4}gcno"
+		ln -sf ${SERVICE_DIR}/${note} ${GCOV_PREFIX}/${note}
+	done
+	while [ 1 ] ; do
+		#Must cat the kernel coverage since its a seq file... cp will fail
+		cat "$service_dir/$gcda" > "${GCOV_PREFIX}/${gcda}"
+		kill -USR2 $pid
+		sleep 5
+		lcov -q -c -o "${GCOV_PREFIX}/lcov.cov" -d "${GCOV_PREFIX}" -b "${GCOV_PREFIX}/umlinux/linux-4.19.45"
+
+		#lcov opens and closes the output file many times
+		#touch a lock file to notify cgcserv when its done
+		touch "${GCOV_PREFIX}/lcov.lock"
+	done
+}
+
+#mount system file systems
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t debugfs none /sys/kernel/debug
+mount -t tmpfs none /var/run
+mount -o remount,rw /dev/root
+
+#run daemons
+echo -n "Starting wpa_supplicant"
+${hostapd} -P /run/hostapd.pid -B $SERVICE_DIR/wifi_relay/hostapd.conf || exit 1
+echo "[ok]"
+gcov_dump > /dev/null 2>&1 &
+echo -n "Starting wpa_supplicant"
+wpa_supplicant -B -Dnl80211 -iwlan1 -c$SERVICE_DIR/wifi_relay/wpa_supplicant.conf &
+echo "[ok]"
+echo "Launching relay..."
+exec $SERVICE_DIR/wifi_relay/relay
+

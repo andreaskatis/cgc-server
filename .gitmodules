@@ -1,0 +1,3 @@
+[submodule "gcovrt"]
+	path = gcovrt
+	url = https://gitlab.com/RMN-SC/gcovrt

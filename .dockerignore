@@ -1,0 +1,9 @@
+cb-multios/build
+cb-multios/.git
+services
+#Bind mount instead of copy
+cb-multios/*
+.git
+.dockerignore
+.gitignore
+Dockerfile

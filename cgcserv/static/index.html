@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>CGC Server</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/static/three.min.js"></script>
+	<script src="/static/cube.js"></script>
+	<script src="/static/srccoverage.js"></script>
+	<link rel="stylesheet" href="/static/autocombobox.css">
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/coverage.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf-8">
+		var socket = io('http://' + document.domain + ':' + location.port);
+		var treeView;
+		var sourceView;
+		
+		socket.on('connect', function() {
+			socket.emit('sessions', {"get": "all"} );
+		});
+		socket.on('disconnect', function() {
+			console.log("Disconnected");
+		});
+		socket.on('error', function(error) {
+			console.log(error);
+		});
+		socket.on('message', function(message) {
+			console.log(message);
+		});
+
+		socket.on('events', function(events) {
+			jEvents = $(".service-events")
+			jEvents.find('*').each(function(i, e) {
+				var key
+				key = $(this).data("key")
+				if (key in events) {
+					$(this).text(events[key]);
+				} else if(key != null) {
+					$(this).parent().remove();
+				}
+				delete events[key]
+			});
+			jEvents.append(function() {
+				var s = "";
+				for (var key in events) {
+					s += "<li class='list-group-item d-flex justify-content-between align-items-center'>" + key +
+						":<span class='badge badge-primary badge-pill' data-key='" + key + "'>" + events[key] + "</span></li>";
+				}
+				return s;
+			});
+		});
+		
+		socket.on('coverage', function(coverage) {
+			treeView.update(coverage);
+			sourceView.update(coverage);
+		});
+
+		socket.on('sessions', function(sessions) {
+			for(var s in sessions) {
+				$('#sessionList').append(
+						"<tr id='" + s + "'>" +
+						"<td>" + s + "</td>" +
+						"<td>"+ sessions[s].name + "</td>" +
+						"<td>"+ sessions[s].port + "</td>" +
+						"<td><a href='#' onclick=\"joinSession('" + s +"')\">Details</button></td>" +
+						"<td><button type='button' class='btn btn-danger' onclick=\"stopSession('" + s + "')\">Stop</button></td>" +
+						"<div id='details' class='collapse'>" +
+						"report" +
+						"</div>" +
+						"</tr>"
+					);
+			}
+		});
+
+		socket.on('start', function(session) {
+			$('#sessionList').append(
+						"<tr id='" + session.id + "'>" +
+						"<td>" + session.id + "</td>" +
+						"<td>"+ session.name + "</td>" +
+						"<td>"+ session.port + "</td>" +
+						"<td><a href='#' onclick=\"joinSession('" + session.id +"')\">Details</button></td>" +
+						"<td><button type='button' class='btn btn-danger' onclick=\"stopSession('" + session.id + "')\">Stop</button></td>" +
+						"<div id='details' class='collapse'>" +
+						"report" +
+						"</div>" +
+						"</tr>"
+					);
+			$("#btnStart").empty().append("Start").prop('disabled', false);
+		});
+
+		function joinSession(sid) {
+			sourceView.setPrefix("/session/" + sid + "/sources");
+			socket.emit('join', {"sid": sid} );
+		}
+
+		$(document).ready(function() {
+			$("#btnStart").click(function() {
+				$("#btnStart")
+					.prop('disabled', true)
+					.empty()
+					.append("Building...")
+					.append("<span class=\"spinner-border spinner-border-sm\"></span>");
+				service = $("#txtService").val().replace(/ /g,'+');
+				socket.emit("start", {"service" : service});
+			});
+			treeView = new coverageTreeView($("#file-tree"));
+			sourceView = new coverageSourceView($("#center"));
+			treeView.addEventListener('leafClicked', function(e) {
+				sourceView.setSourceFile(e.detail.path());
+			});
+		});
+		
+		/*
+		sourceView = new coverageSourceView("#source-pane");
+		treeView = new coverageTreeView("#file-tree");
+		treeView.addEventListener('leafClicked', function(e) {
+				sourceView.setSourceFile(e.detail.path());
+		});
+		*/
+	</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark">
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" href="#">Sessions</a>
+		</li>
+	</ul>
+</nav>
+<div class="container-fluid" style="margin:0px;padding:0px;position:absolute;top:56px;bottom:0px">
+	<div class="row h-100">
+		<div id="toolbox" class="card col-sm-3 h-100">
+				<div class="card-header"><a data-toggle="collapse" href="#active_sessions">Active Sessions</a></div>
+				<div id="active_sessions" data-parent="#toolbox" class="card-body collapse in">
+						<!-- Button to Open the Modal -->
+				<table id="sessionList" class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th>Session ID</th><th>Service</th><th>Port</th><th>Details</th><th>Stop</th>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td>
+							<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mNewSession">New</button></td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_details">Service Details</a></div>
+				<div id="service_details" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-details">
+						<li class='list-group-item d-flex justify-content-between align-items-center'>Name:<span data-key="name"></span></li>
+						<li class='list-group-item d-flex justify-content-between align-items-center'>Port:<span data-key="port"></span></li>
+					</ul>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_events">Service Events</a></div>
+				<div id="service_events" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-events"></ul>
+					<dl class="small">
+						<dt>Notes:</dt>
+						<dd>EXIT: means the process exited via exit()</dd>
+						<dd>SIGPIPE: Probably means the fuzzer closed its socket. This results in the server closing its socket.</dd>
+						<dd>SIGUSR1: Currently SIGUSR1 is sent to the process to capture GCOV data.</dd>
+					</dl>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#service_dumps">Core Dumps</a></div>
+				<div id="service_dumps" data-parent="#toolbox" class="card-body collapse">
+					<ul class="list-group service-cores"></ul>
+				</div>
+				<div class="card-header"><a data-toggle="collapse" href="#file-tree">File Tree</a></div>
+				<div id="file-tree" data-parent="#toolbox" class="card-body collapse"></div>
+		</div>
+		<div id="center" class="col-sm-9 h-100">
+			<div id="cube" class="d-none"></div>
+		</div>
+	</div>
+
+	<!-- The Modal -->
+	<div class="modal fade" id="mNewSession">
+		<div class="modal-dialog">
+				<div class="modal-content">
+				
+				<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Create Service</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="form-group ui-front">
+					<label for="txtService">Service:</label>
+					<input type="text" class="form-control" id="txtService">
+				</div>
+				<div id="alrtStart" class="alert alert-danger"></div>
+			</div>
+			
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btnStart">Start</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
